@@ -1,5 +1,7 @@
 //Declaramos librerias
 
+//Variables globales
+String pos;
 //-----------------------//
 //Definir Pines Respuesta
 #define PIN_LED 13
@@ -74,14 +76,23 @@ void loop() {
         digitalWrite(PIN_LED,HIGH);//Modo activo visual
         Saludo();
         flash(); //Usamos el flash para visualizar si hemos entrado en un modo especifico
+        
+        digitalWrite(PIN_LED,LOW);
         break;
       case 'P':
         digitalWrite(PIN_LED,HIGH);//Modo activo visual
-        ControlPosicion();
+        delay(5000);
+        pos = Serial.readString();
+        Serial.println(pos);
+       
+        digitalWrite(PIN_LED,LOW);
         break;
       case 'V':
         digitalWrite(PIN_LED,HIGH);//Modo activo visual
-        ControlVelocidad();
+        for(int i = 0; i < 5; i++)
+          Serial.println(String(i));
+          
+        digitalWrite(PIN_LED,LOW);
         break;
       default:
         digitalWrite(PIN_LED,LOW);//Modo inactivo visual
